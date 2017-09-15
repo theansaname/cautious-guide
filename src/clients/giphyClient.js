@@ -1,34 +1,56 @@
 
 import request from 'request';
+import url from 'url'
 
-const api_key = '';
-const giphy_host = 'https://api.giphy.com';
-const gihpy_api_route = '/v1/gifs';
-const search_route = '/search';
+const search = {
+    protocol: 'https',
+    host: 'api.giphy.com',
+    pathname: '/v1/gifs/search',
+    query: {
+        api_key: '9a002efdbf2e43588eb1b9366df5ab05',
+        q: '',
+        limit: '25',
+        offset: '',
+        rating: 'G',
+        lang: 'en'
+    }
+};
 
-const search_query = {
-    q: '',
-    limit: '25',
-    offset: '',
-    rating: 'G',
-    lang: 'en'
-}
-
-function searchURL() {
-    return new URL(gihpy_api_route + search_route, giphy_host);
-}
-
-function search(term, page) {
-    search_query.q = term;
-    search_query.offset = page * search_query.limit;
+function performSearch(term, page) {
+    search.query.q = term;
+    search.query.offset = page * search.query.limit;
     
-
-
-
+    request(url.format(search), (err, res) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(res);
+        return res;
+    });
 }
 
+const trending = {
+    protocol: 'https',
+    host: 'api.giphy.com',
+    pathname: '/v1/gifs/trending',
+    query: {
+        api_key: '9a002efdbf2e43588eb1b9366df5ab05',
+        limit: '25',
+        rating: 'G'
+    }
+};
 
+function performTrending() {
+    request(url.format(trending), (err, res) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(res);
+        return res;
+    });
+}
 
 module.exports = {
-    searchURL: searchURL
+    performSearch: performSearch,
+    performTrending: performTrending 
 }
