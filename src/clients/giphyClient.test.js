@@ -1,7 +1,7 @@
-import giphyClient from './giphyClient.js';
+import {performSearch, performTrending} from './giphyClient.js';
 import nock from 'nock';
 
-it.only('', (done) => {
+fit('', (done) => {
 
     var scope = nock('https://api.giphy.com')
         .get('')
@@ -11,16 +11,15 @@ it.only('', (done) => {
     
        // console.log(scope.activeMocks());
 
-    giphyClient.performSearch('pants', 2);
+    performSearch('pants', 2);
     
     setTimeout( function () { //TODO remove me
         done();
     }, 5000);
 }, 8000);
 
-
 it('', (done) => {
-    var body = giphyClient.performTrending();
+    var body = performTrending();
     
     setTimeout( function () {
         done();

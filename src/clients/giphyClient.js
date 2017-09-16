@@ -16,7 +16,7 @@ const search = {
     }
 };
 
-function performSearch(term, page) {
+export function performSearch(term, page) {
     search.query.q = term;
     search.query.offset = page * search.query.limit;
     
@@ -40,7 +40,7 @@ const trending = {
     }
 };
 
-function performTrending() {
+export function performTrending() {
     request(url.format(trending), (err, res) => {
         if (err) {
             console.log(err);
@@ -48,9 +48,4 @@ function performTrending() {
         console.log(res);
         return res;
     });
-}
-
-module.exports = {
-    performSearch: performSearch,
-    performTrending: performTrending 
 }
