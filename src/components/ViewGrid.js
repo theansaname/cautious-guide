@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './ViewGrid.css';
-import {performTrending} from '../clients/giphyClient';
 
 class ViewGrid extends Component {
   render() {
@@ -17,10 +16,10 @@ class ViewGrid extends Component {
     }
 
     return(
-      <div>
+      <div className="grid-container">
       {(this.props.value).map((gifItem) => {
           return (
-            <img key={gifItem.bitly_gif_url} src={gifItem.images.preview_gif.url} alt=""/>
+            <img className='grid-image' key={gifItem.bitly_gif_url} src={gifItem.images.preview_gif.url} alt=""/>
           );
         })
       }

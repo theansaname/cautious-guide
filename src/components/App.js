@@ -11,9 +11,12 @@ class App extends Component {
     super();
     this.state = {
       trendingGifs: undefined,
-      recentSearches:  [1,2,3,4,5],
+      recentSearches: [],
       searchResults: undefined,
     };
+
+    this.replaySearch = this.replaySearch.bind(this);
+    this.loadSearchedGifs = this.loadSearchedGifs.bind(this);
   }
 
   componentDidMount() {
@@ -34,30 +37,49 @@ class App extends Component {
 
   loadSearchedGifs(searchTerm, pageNumber)
   {
+    let updateRecentSearches = this.state.recentSearches.slice();
+    if (updateRecentSearches.indexOf(searchTerm) === -1) {
+      updateRecentSearches.push(searchTerm);
+      this.setState({
+        recentSearches: updateRecentSearches
+      });  
+    }
+    
     const mySelf = this;
     performSearch(searchTerm, pageNumber, function(results) {
       mySelf.setState({searchResults: results});
     })
   }
 
+  replaySearch(item) {
+    this.loadSearchedGifs(item, 1);
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <div className="Trending">
-            <p>Top 25 - Trending</p>
+          <p>Top 25 - Trending</p>
+          <div className="App-Trending">
             <ViewGrid value={this.state.trendingGifs} />
           </div>
         </div>
-        <div id="searchContainer">
+        <div id="searchContainer" className="App-SearchContainer">
           <div className="App-RecentSearches">
+            <p>Recently Searched</p>
             <ul>
-              {this.state.recentSearches.map((recentItem) => <li key={recentItem.toString()}>{recentItem}</li>)}
+              {this.state.recentSearches.map((recentItem) => 
+                <li 
+                  key={recentItem.toString()}
+                  onClick={this.replaySearch.bind(this, recentItem)}
+                >{recentItem}
+                </li>
+              )} 
             </ul>
           </div>
           <div className="App-SearchView">
             <div className="App-SearchBar">
-              <SearchBar />
+              <SearchBar searchFor={this.loadSearchedGifs} />
             </div>
             <div className="App-SearchResults">
               <ViewGrid value={this.state.searchResults} />

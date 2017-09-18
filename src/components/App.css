@@ -9,16 +9,35 @@
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.App-Trending {
+  height:120px;
+  overflow-y:auto;
+}
+
+.App-SearchContainer {
+  width: 100%;
+  padding-top: 10px;
 }
 
 .App-RecentSearches {
-  width: 30%;
   float: left;
+  width: 15%;
 }
 
 .App-SearchView {
-  width: 70%;
   float: right;
+  width: 85%;
+}
+
+.App-SearchBar {
+  padding-bottom: 10px;
+}
+
+li {
+  text-align: left;
+}
+
+li:hover {
+  background: rgba(36, 39, 41, 0.24);
+  cursor: pointer;
 }

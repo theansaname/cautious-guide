@@ -1,3 +1,11 @@
-input {
-    width: 100px;
+.SearchForm {
+	font-size: 0;
+}
+
+.SearchTextInput {
+	max-width: 300px;
+}
+
+.SearchSubmit {
+	padding-left: 15px;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from './ViewGrid';
+import ViewGrid from './ViewGrid';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
