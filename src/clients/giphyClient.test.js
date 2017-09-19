@@ -1,7 +1,7 @@
 import {performSearch, performTrending} from './giphyClient.js';
-import nock from 'nock';
+//import nock from 'nock';
 
-it('', (done) => {
+it('performs a search', (done) => {
 /*
     var scope = nock('https://api.giphy.com')
         .get('')
@@ -11,24 +11,21 @@ it('', (done) => {
     
        // console.log(scope.activeMocks());
 */
-    performSearch('pants', 2, (parseData) => {
-          //console.log(parseData);
-        done();
-    });
+  performSearch('pants', 2, (parseData) => {
+    expect(parseData).not.toBe(null);
+    expect(parseData).not.toBe(undefined);
+    done();
+  });
 }, 8000);
 
+it('performs call for trending gifs', (done) => {
+  var expectedDate = new Date();
+  performTrending((data) => {  
+    let actualDate = new Date(data[0].trending_datetime);
 
-
-it('', (done) => {
-    var currentDate = new Date();
-    performTrending((data) => {
-
-
-
-        console.log(data);
-        console.log('------------------');
-        console.log(data[0].trending_datetime);
-
-        done();
-    });
+    expect(actualDate.getDate()).toBe(expectedDate.getDate());
+    expect(actualDate.getDay()).toBe(expectedDate.getDay());
+    expect(actualDate.getFullYear()).toBe(expectedDate.getFullYear());
+    done();
+  });
 }, 8000);

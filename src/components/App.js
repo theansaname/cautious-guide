@@ -35,8 +35,7 @@ class App extends Component {
     });
   }
 
-  loadSearchedGifs(searchTerm, pageNumber)
-  {
+  addTermToRecentSearches(searchTerm) {
     let updateRecentSearches = this.state.recentSearches.slice();
     if (updateRecentSearches.indexOf(searchTerm) === -1) {
       updateRecentSearches.push(searchTerm);
@@ -44,6 +43,11 @@ class App extends Component {
         recentSearches: updateRecentSearches
       });  
     }
+  }
+
+  loadSearchedGifs(searchTerm, pageNumber)
+  {
+    this.addTermToRecentSearches(searchTerm);
     
     const mySelf = this;
     performSearch(searchTerm, pageNumber, function(results) {

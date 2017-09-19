@@ -1,7 +1,11 @@
 {
   "name": "cautious-guide",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "~6",
+    "npm": "^3.10.9"
+  },
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -18,7 +22,6 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
-    "@storybook/react": "^3.2.8",
-    "nock": "^9.0.14"
+    "@storybook/react": "^3.2.8"
   }
 }
