@@ -2,7 +2,7 @@
 
 To Install
 
-`npm install && npm build`
+`npm install`
 
 To Run
 
